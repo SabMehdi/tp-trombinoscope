@@ -49,31 +49,42 @@ function App() {
       }
     );
   }, []);
-
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
+    <Container>
+      <h1 >Trombinoscope</h1>
+      {/* Affichez les informations des personnes ici */}
+      {personnes.map((personne, index) => (
+        <Row key={index}>
+          <Col>
+            <h2 style={{textAlign:'center'}}>
+              {personne.prenom} {personne.nom}
+            </h2>
+            {/* Affichez les voitures préférées en un slider */}
+            <Slider {...sliderSettings}>
+              {personne.voitures.map((voiture, index) => (
+                <div key={index}>
+                  {/* Apply custom CSS to control image size */}
+                  <img
+                    src={voiture.image}
+                    alt={voiture.nom}
+                    style={{ maxWidth: '100px', maxHeight: '100px', display:'block', margin:'0 auto'} } // Adjust as needed
 
-   // Inside your component
-<Slider>
-  {personnes.map((personne, index) => (
-    <div key={index}>
-      <h2>{personne.prenom} {personne.nom}</h2>
-      <Carousel>
-        {personne.voitures.map((voiture, vIndex) => (
-          <Carousel.Item key={vIndex}>
-            <img src={voiture.image} alt={voiture.nom} className="d-block w-100" />
-            <Carousel.Caption>
-              <h3>{voiture.nom}</h3>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-    </div>
-  ))}
-</Slider>
-
-    
-
-
+                  />
+                  {/* <p>{voiture.nom}</p>
+                 */}</div>
+              ))}
+            </Slider>
+          </Col>
+        </Row>
+      ))}
+    </Container>
   );
 }
 
