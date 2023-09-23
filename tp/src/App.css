@@ -41,3 +41,32 @@
   max-width: 10px; /* Adjust as needed */
   max-height: 10px; /* Adjust as needed */
 }
+.grids{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.email-row{
+  /* Center the text horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the text vertically */
+  border: 1px solid rgb(14, 14, 14); /* Add a black border */
+  padding: 10px; 
+  background-color: rgba(0,0,0,.03);
+  color: #868e96;
+}
+
+  .slider-col{
+
+    border: 1px solid black;
+    height: 160px;
+    border-bottom: 0px;
+    
+  }
+ .test{
+  margin: 10px;
+  
+ }
+ 

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Carousel } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Papa from 'papaparse';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './App.css'
 
 const marques = [
   { nom: 'Toyota', image: 'https://logowik.com/content/uploads/images/toyota5075.logowik.com.webp' },
@@ -41,6 +44,7 @@ function App() {
             return {
               nom: personData.Nom,
               prenom: personData.Prénom,
+              email: personData.Email,
               voitures: voitures,
             };
           });
@@ -55,37 +59,50 @@ function App() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+
+
   };
+
   return (
     <Container>
-      <h1 >Trombinoscope</h1>
+      <h1>Trombinoscope</h1>
       {/* Affichez les informations des personnes ici */}
-      {personnes.map((personne, index) => (
-        <Row key={index}>
-          <Col>
-            <h2 style={{textAlign:'center'}}>
-              {personne.prenom} {personne.nom}
-            </h2>
-            {/* Affichez les voitures préférées en un slider */}
-            <Slider {...sliderSettings}>
-              {personne.voitures.map((voiture, index) => (
-                <div key={index}>
-                  {/* Apply custom CSS to control image size */}
-                  <img
-                    src={voiture.image}
-                    alt={voiture.nom}
-                    style={{ maxWidth: '100px', maxHeight: '100px', display:'block', margin:'0 auto'} } // Adjust as needed
+      <div className='grids'>
+        {personnes.map((personne, index) => (
+          <div className='test'>
 
-                  />
-                  {/* <p>{voiture.nom}</p>
-                 */}</div>
-              ))}
-            </Slider>
-          </Col>
-        </Row>
-      ))}
+            <div className='slider-col' >
+              <h2 style={{ textAlign: 'center' }}>
+                <span style={{fontWeight:'bold'}}>{personne.nom}</span>{personne.prenom}
+              </h2>
+              {/* Affichez les voitures préférées en un slider */}
+              <Slider {...sliderSettings} >
+                {personne.voitures.map((voiture, index) => (
+                  <div key={index}>
+                    {/* Apply custom CSS to control image size */}
+                    <img
+                      src={voiture.image}
+                      alt={voiture.nom}
+                      style={{ maxWidth: '100px', maxHeight: '100px', height: '50px', display: 'block', margin: '0 auto' }}
+                    />
+                    {/* {<p>{voiture.nom}</p> } */}
+                  </div>
+                ))}
+              </Slider>
+            </div>
+
+            <div className='email-row'>
+              {personne.email}
+            </div>
+
+          </div>
+
+        ))}
+      </div>
     </Container>
+
   );
+
 }
 
 export default App;
