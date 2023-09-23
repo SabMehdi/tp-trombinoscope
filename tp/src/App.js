@@ -73,7 +73,7 @@ function App() {
 
             <div className='slider-col' >
               <h2 style={{ textAlign: 'center' }}>
-                <span style={{fontWeight:'bold'}}>{personne.nom}</span>{personne.prenom}
+              {personne.nom.toUpperCase()} {personne.prenom}
               </h2>
               {/* Affichez les voitures préférées en un slider */}
               <Slider {...sliderSettings} >
