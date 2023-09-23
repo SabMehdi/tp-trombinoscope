@@ -24,10 +24,21 @@ const marques = [
   { nom: 'Opel', image: 'https://logowik.com/content/uploads/images/opel-new-20231625.logowik.com.webp' },
 ];
 
+
+
 function App() {
   const [data, setData] = useState([]);
   const [personnes, setPersonnes] = useState([]);
+  const [showDetails, setShowDetails] = useState([]); // Initial state is an empty object
+  const [buttonText, setButtonText] = useState(new Array(personnes.length).fill('Afficher les détails'));
 
+  const toggleDetails = (index) => {
+    setShowDetails((prevState) => {
+      const updatedShowDetails = [...prevState];
+      updatedShowDetails[index] = !prevState[index];
+      return updatedShowDetails;
+    });
+  };
   useEffect(() => {
     Papa.parse(
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?gid=610042587&single=true&output=csv',
@@ -46,6 +57,15 @@ function App() {
               prenom: personData.Prénom,
               email: personData.Email,
               voitures: voitures,
+              tel: personData['Numéro de téléphone'],
+              age: personData.Age,
+              acheterVoiture: personData['Voullez vous achetez une voiture ?'],
+              voitureOccasion: personData['Veux-tu acheter une voiture d\'occasion ?'],
+              budget: personData['C\'est quoi votre budget en euros?'],
+              permis:personData['As-tu un permis B ?'],
+              voitureElectrique:personData['Préfère tu proquerire une voiture éléctrique ?'],
+              criteres:personData['Quelles sont les critères les plus importantes dans une voiture pour vous ?'],
+              inscription:personData.Timestamp
             };
           });
           setPersonnes(personnesData);
@@ -53,6 +73,8 @@ function App() {
       }
     );
   }, []);
+
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -69,23 +91,21 @@ function App() {
       {/* Affichez les informations des personnes ici */}
       <div className='grids'>
         {personnes.map((personne, index) => (
-          <div className='test'>
-
-            <div className='slider-col' >
+          <div className='test' key={index}>
+            <div className='slider-col'>
               <h2 style={{ textAlign: 'center' }}>
-              {personne.nom.toUpperCase()} {personne.prenom}
+                {personne.nom.toUpperCase()} {personne.prenom}
               </h2>
               {/* Affichez les voitures préférées en un slider */}
-              <Slider {...sliderSettings} >
-                {personne.voitures.map((voiture, index) => (
-                  <div key={index}>
+              <Slider {...sliderSettings}>
+                {personne.voitures.map((voiture, voitureIndex) => (
+                  <div key={voitureIndex}>
                     {/* Apply custom CSS to control image size */}
                     <img
                       src={voiture.image}
                       alt={voiture.nom}
                       style={{ maxWidth: '100px', maxHeight: '100px', height: '50px', display: 'block', margin: '0 auto' }}
                     />
-                    {/* {<p>{voiture.nom}</p> } */}
                   </div>
                 ))}
               </Slider>
@@ -95,12 +115,28 @@ function App() {
               {personne.email}
             </div>
 
-          </div>
+            <button onClick={() => toggleDetails(index)}>
+              {showDetails[index] ? 'Masquer les détails' : 'Afficher les détails'}
+            </button>
 
+            {showDetails[index] && (
+              <div className='additional-details'>
+                <p>Date D'inscription: {personne.inscription}</p>
+                <p>Telephone: {personne.tel}</p>
+                <p>Age: {personne.age}</p>
+                <p>Permis B: {personne.permis}</p>
+                <p>Voullez vous achetez une voiture ?: {personne.voitureElectrique}</p>
+                <p>Préfère tu proquerire une voiture éléctrique ?: {personne.voitureElectrique}</p>
+                <p>Quelles sont les critères les plus importantes dans une voiture pour vous ?: {personne.criteres}</p>
+                <p>Veux-tu acheter une voiture d'occasion ?: {personne.voitureOccasion}</p>
+                <p>C'est quoi votre budget en euros?: {personne.budget}</p>
+                
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </Container>
-
   );
 
 }
