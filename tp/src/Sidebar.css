@@ -26,4 +26,6 @@
   .sidebar li:hover {
     background-color: #555; /* Change the background color on hover */
   }
-  
+  .sidebar li>*{
+    color: rgb(255, 255, 255) !important;
+  }
