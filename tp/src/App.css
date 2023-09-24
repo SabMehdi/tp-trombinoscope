@@ -89,3 +89,16 @@
   margin: 10px;
 
 }
+
+.additional-details {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.additional-details p {
+  font-size: 16px;
+  color: #333;
+}

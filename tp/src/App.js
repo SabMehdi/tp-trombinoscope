@@ -62,10 +62,10 @@ function App() {
               acheterVoiture: personData['Voullez vous achetez une voiture ?'],
               voitureOccasion: personData['Veux-tu acheter une voiture d\'occasion ?'],
               budget: personData['C\'est quoi votre budget en euros?'],
-              permis:personData['As-tu un permis B ?'],
-              voitureElectrique:personData['Préfère tu proquerire une voiture éléctrique ?'],
-              criteres:personData['Quelles sont les critères les plus importantes dans une voiture pour vous ?'],
-              inscription:personData.Timestamp
+              permis: personData['As-tu un permis B ?'],
+              voitureElectrique: personData['Préfère tu proquerire une voiture éléctrique ?'],
+              criteres: personData['Quelles sont les critères les plus importantes dans une voiture pour vous ?'],
+              inscription: personData.Timestamp
             };
           });
           setPersonnes(personnesData);
@@ -121,6 +121,7 @@ function App() {
 
             {showDetails[index] && (
               <div className='additional-details'>
+                <h3>Additional Details</h3>
                 <p>Date D'inscription: {personne.inscription}</p>
                 <p>Telephone: {personne.tel}</p>
                 <p>Age: {personne.age}</p>
@@ -130,8 +131,8 @@ function App() {
                 <p>Quelles sont les critères les plus importantes dans une voiture pour vous ?: {personne.criteres}</p>
                 <p>Veux-tu acheter une voiture d'occasion ?: {personne.voitureOccasion}</p>
                 <p>C'est quoi votre budget en euros?: {personne.budget}</p>
-                
               </div>
+
             )}
           </div>
         ))}
