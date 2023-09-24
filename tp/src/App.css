@@ -37,7 +37,10 @@
     transform: rotate(360deg);
   }
 }
-
+.mypage{
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
 .custom-image-size {
   max-width: 10px;
   /* Adjust as needed */
@@ -117,4 +120,16 @@
   font-size: 20px;
   color: #555;
   margin-bottom: 10px;
+}
+
+/* In your CSS file */
+.bm-menu-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.bm-menu {
+  background-color: #333; /* Adjust the background color */
+  width: 200px; /* Adjust the width of the menu */
 }
