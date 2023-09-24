@@ -1,25 +1,29 @@
 
 import React from 'react';
-import { BrowserRouter, Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
 import Sidebar from './Sidebar';
 import Home from './Home';
 import Statistics from './HistoAge';
 import Histogram from './HistoAge';
+import HistPermis from './Permis';
+import Favorites from './favorites';
 function App() {
   return (
     <BrowserRouter>
-        <Sidebar />
+      <Sidebar />
 
-        <Container style={{ marginLeft: '250px' }}>
-          <h1 style={{ textAlign: 'center' }}>Trombinoscope</h1> 
-          
-          <Routes>
-            <Route path="/" Component={Home} />
-            <Route path="/statistics" Component={Histogram} />
-          </Routes>
-        </Container> 
+      <Container style={{ marginLeft: '250px' }}>
+        <h1 style={{ textAlign: 'center' }}>Trombinoscope</h1>
+
+        <Routes>
+          <Route path="/" Component={Home} />
+          <Route path="/permis" Component={HistPermis} />
+          <Route path="/histo" Component={Histogram} />
+          <Route path="/favs" Component={Favorites} />
+        </Routes>
+      </Container>
     </BrowserRouter>
   );
 }

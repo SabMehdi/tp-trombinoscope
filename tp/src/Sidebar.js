@@ -13,7 +13,7 @@ function Sidebar() {
       <ul>
         <li> <Link to="/">Acceuil</Link></li>
         <li onClick={toggleDropdown} >
-          <Link to={"/statistics"}>Statistiques</Link>
+          Statistics
           {showDropdown ? (
             <span className="dropdown-icon">&#9650;</span>
           ) : (
@@ -22,7 +22,19 @@ function Sidebar() {
         </li>
       </ul>
 
-      {showDropdown}
+      {showDropdown && (
+        <div className="dropdown">
+          <ul>
+            <li> <Link to={"/histo"}>Age</Link></li>
+          </ul>
+          <ul>
+            <li> <Link to={"/permis"}>Permis</Link></li>
+          </ul>
+          <ul>
+            <li> <Link to={"/favs"}>Favoris</Link></li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
