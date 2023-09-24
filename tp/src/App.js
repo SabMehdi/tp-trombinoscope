@@ -5,7 +5,8 @@ import Container from 'react-bootstrap/Container';
 
 import Sidebar from './Sidebar';
 import Home from './Home';
-import Statistics from './Statistics';
+import Statistics from './HistoAge';
+import Histogram from './HistoAge';
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +17,7 @@ function App() {
           
           <Routes>
             <Route path="/" Component={Home} />
-            <Route path="/statistics" Component={Statistics} />
+            <Route path="/statistics" Component={Histogram} />
           </Routes>
         </Container> 
     </BrowserRouter>
