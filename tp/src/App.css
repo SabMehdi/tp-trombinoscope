@@ -87,6 +87,12 @@
 
 .test {
   margin: 10px;
+ padding: 5px;
+}
+
+.test:hover{
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow on hover */
+  transition: all 0.3s ease-in-out; /* Add a smooth transition effect */
 
 }
 
@@ -96,9 +102,19 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 10px;
+  transition: all 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+.additional-details:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow on hover */
 }
 
 .additional-details p {
   font-size: 16px;
   color: #333;
+  margin: 8px 0;
+}
+.additional-details h3 {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 10px;
 }

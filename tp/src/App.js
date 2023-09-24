@@ -7,7 +7,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 const marques = [
   { nom: 'Toyota', image: 'https://logowik.com/content/uploads/images/toyota5075.logowik.com.webp' },
   { nom: 'Seat', image: 'https://logowik.com/content/uploads/images/seat-20173868.logowik.com.webp' },
@@ -120,18 +121,20 @@ function App() {
             </button>
 
             {showDetails[index] && (
-              <div className='additional-details'>
-                <h3>Additional Details</h3>
-                <p>Date D'inscription: {personne.inscription}</p>
-                <p>Telephone: {personne.tel}</p>
-                <p>Age: {personne.age}</p>
-                <p>Permis B: {personne.permis}</p>
-                <p>Voullez vous achetez une voiture ?: {personne.voitureElectrique}</p>
-                <p>Préfère tu proquerire une voiture éléctrique ?: {personne.voitureElectrique}</p>
-                <p>Quelles sont les critères les plus importantes dans une voiture pour vous ?: {personne.criteres}</p>
-                <p>Veux-tu acheter une voiture d'occasion ?: {personne.voitureOccasion}</p>
-                <p>C'est quoi votre budget en euros?: {personne.budget}</p>
-              </div>
+             <div className='additional-details'>
+             <h3>Additional Details</h3>
+             <p>Date D'inscription: {personne.inscription}</p>
+             <p>Telephone: {personne.tel}</p>
+             <p>Age: {personne.age}</p>
+             <p>
+               <FontAwesomeIcon icon={faIdCard} /> Permis B: {personne.permis}
+             </p>
+             <p>Voullez vous achetez une voiture ?: {personne.voitureElectrique}</p>
+             <p>Préfère tu proquerire une voiture éléctrique ?: {personne.voitureElectrique}</p>
+             <p>Quelles sont les critères les plus importantes dans une voiture pour vous ?: {personne.criteres}</p>
+             <p>Veux-tu acheter une voiture d'occasion ?: {personne.voitureOccasion}</p>
+             <p>C'est quoi votre budget en euros?: {personne.budget}</p>
+           </div>
 
             )}
           </div>
