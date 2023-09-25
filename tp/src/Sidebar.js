@@ -33,6 +33,9 @@ function Sidebar() {
           <ul>
             <li> <Link to={"/favs"}>Favoris</Link></li>
           </ul>
+          <ul>
+            <li> <Link to={"/crit"}>Criteres</Link></li>
+          </ul>
         </div>
       )}
     </div>

@@ -9,6 +9,7 @@ import Statistics from './HistoAge';
 import Histogram from './HistoAge';
 import HistPermis from './Permis';
 import Favorites from './favorites';
+import Criteres from './Criteres';
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/permis" Component={HistPermis} />
           <Route path="/histo" Component={Histogram} />
           <Route path="/favs" Component={Favorites} />
+          <Route path="/crit" Component={Criteres} />
         </Routes>
       </Container>
     </BrowserRouter>
