@@ -7,14 +7,14 @@ function HistogramAge() {
   const [histogramData, setHistogramData] = useState([]);
 
   useEffect(() => {
-    // Fetch and parse the CSV data
+   
     Papa.parse(
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?output=csv', // Replace with your CSV file URL
       {
         download: true,
         header: true,
         complete: (result) => {
-          // Extract the data you want to create a histogram for
+         
           const ages = result.data.map((row) => parseInt(row['Age'], 10)).filter((age) => !isNaN(age));
           setHistogramData(ages);
         },
@@ -31,7 +31,7 @@ function HistogramAge() {
 
     const ctx = canvas.getContext('2d');
 
-    // Create age ranges and count participants in each range
+   
     const ageRanges = {
       '10-20': 0,
       '20-30': 0,
@@ -78,16 +78,16 @@ function HistogramAge() {
     }
 
     const newChart = new Chart(ctx, {
-      type: 'bar', // Use 'bar' type for histograms
+      type: 'bar',
       data: data,
       options: {
         scales: {
           x: {
-            type: 'category', // Use 'category' scale for age ranges
+            type: 'category', 
             position: 'bottom',
           },
           y: {
-            type: 'linear', // Use 'linear' scale for y-axis
+            type: 'linear',
             position: 'left',
           },
         },

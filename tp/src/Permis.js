@@ -50,10 +50,10 @@ function HistPermis() {
     }
 
     const newChart = new Chart(ctx, {
-      type: 'pie', // Use 'pie' type for pie charts
+      type: 'pie', 
       data: data,
       options: {
-        // Add any options you need for customization here
+        
       },
     });
 
