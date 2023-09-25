@@ -9,7 +9,7 @@ function Favorites() {
   useEffect(() => {
    
     Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?output=csv',
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?gid=610042587&single=true&output=csv',
       {
         download: true,
         header: true,
@@ -44,7 +44,7 @@ function Favorites() {
 
   useEffect(() => {
     const canvas = document.getElementById('brands-chart');
-
+    
     if (!canvas) {
       return;
     }
@@ -58,7 +58,7 @@ function Favorites() {
       labels: brandLabels,
       datasets: [
         {
-          label: 'Response Count',
+          label: 'Les marques favoris',
           data: responseCounts,
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',

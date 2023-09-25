@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 import './App.css'
 
+// url convenable pour chaque marque
 const marques = [
     { nom: 'Toyota', image: 'https://logowik.com/content/uploads/images/toyota5075.logowik.com.webp' },
     { nom: 'Seat', image: 'https://logowik.com/content/uploads/images/seat-20173868.logowik.com.webp' },
@@ -24,10 +25,11 @@ const marques = [
     { nom: 'Opel', image: 'https://logowik.com/content/uploads/images/opel-new-20231625.logowik.com.webp' },
   ];
 
-function Home() { // Updated component name
+function Home() { 
     const [data, setData] = useState([]);
     const [personnes, setPersonnes] = useState([]);
-    const [showDetails, setShowDetails] = useState([]); // Initial state is an empty object
+    const [showDetails, setShowDetails] = useState([]);
+
     const toggleDetails = (index) => {
       setShowDetails((prevState) => {
         const updatedShowDetails = [...prevState];
@@ -37,7 +39,6 @@ function Home() { // Updated component name
     };
     const headers = useMemo(() => {
       if (data.length > 0) {
-        // Extract the headers from the first row of the CSV data
         return Object.keys(data[0]);
       }
       return [];
@@ -50,7 +51,7 @@ function Home() { // Updated component name
           header: true,
           complete: (result) => {
             setData(result.data);
-            // Enregistrez les informations des personnes ici
+            // Enregistrez les informations des personnes 
   
             const personnesData = result.data.map((personData) => {
               const voitures = marques.filter((marque) =>
@@ -98,7 +99,6 @@ function Home() { // Updated component name
                 <Slider {...sliderSettings}>
                   {personne.voitures.map((voiture, voitureIndex) => (
                     <div key={voitureIndex}>
-                      {/* Apply custom CSS to control image size */}
                       <img
                         src={voiture.image}
                         alt={voiture.nom}
