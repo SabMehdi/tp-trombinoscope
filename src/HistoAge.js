@@ -33,7 +33,7 @@ function HistogramAge() {
 
    
     const ageRanges = {
-      '-20': 0,
+      '10-20': 0,
       '20-30': 0,
       '30-40': 0,
       '40-50': 0,
@@ -42,7 +42,7 @@ function HistogramAge() {
     };
 
     histogramData.forEach((age) => {
-      if (age < 20) {
+      if (age >= 10 && age < 20) {
         ageRanges['10-20'] += 1;
       } else if (age >= 20 && age < 30) {
         ageRanges['20-30'] += 1;
