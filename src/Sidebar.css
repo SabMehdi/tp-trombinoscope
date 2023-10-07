@@ -1,31 +1,48 @@
-  
 /* Sidebar.css */
 .sidebar {
-    background-color: #333;
-    color: white;
-    width: 250px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-y: auto; /* Enable scrolling if needed */
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s; /* Add a smooth transition for the hover effect */
-  }
-  
-  /* Add a hover effect */
-  .sidebar li:hover {
-    background-color: #555; /* Change the background color on hover */
-  }
-  .sidebar li>*{
-    color: rgb(255, 255, 255) !important;
-  }
+  background-color: #333;
+  color: white;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Enable scrolling if needed */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add a smooth transition for the hover effect */
+}
+
+/* Add a hover effect */
+.sidebar li:hover {
+  background-color: #555; /* Change the background color on hover */
+}
+
+/* Apply the same style to buttons */
+.sidebar li > button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  transition: background-color 0.3s;
+}
+
+/* Style the buttons on hover */
+.sidebar li > button:hover {
+  background-color: #555;
+  color: white;
+}
+.sidebar li > * {
+
+  color: white;
+}

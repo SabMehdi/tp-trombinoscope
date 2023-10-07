@@ -10,6 +10,10 @@ import Histogram from './HistoAge';
 import HistPermis from './Permis';
 import Favorites from './favorites';
 import Criteres from './Criteres';
+import AgeD3 from './AgeD3';
+import CriteresD3 from './criteresD3';
+import HistPermisD3 from './PermisD3';
+import FavorisD3 from './favorisD3';
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +28,12 @@ function App() {
           <Route path="/histo" Component={Histogram} />
           <Route path="/favs" Component={Favorites} />
           <Route path="/crit" Component={Criteres} />
+          <Route path="/ageD3" Component={AgeD3} />
+          <Route path="/critD3" Component={CriteresD3} />
+          <Route path="/permisD3" Component={HistPermisD3} />
+          <Route path="/favorisD3" Component={FavorisD3} />
+          
+        
         </Routes>
       </Container>
     </BrowserRouter>
