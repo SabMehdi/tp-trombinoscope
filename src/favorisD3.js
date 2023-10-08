@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import * as d3 from 'd3'; // Import D3 library
+import * as d3 from 'd3'; 
 import Papa from 'papaparse';
 import { useData } from './DataContext';
 function FavorisD3() {

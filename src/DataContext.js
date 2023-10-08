@@ -1,15 +1,14 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import Papa from 'papaparse';
 
-// Create a context
 const DataContext = createContext();
 
-// Create a custom hook to access the context
+
 export function useData() {
   return useContext(DataContext);
 }
 
-// Data provider component
+
 export function DataProvider({ children }) {
   const [data, setData] = useState([]);
 

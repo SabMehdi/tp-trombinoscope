@@ -1,19 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import * as d3 from 'd3'; // Import D3 library
+import * as d3 from 'd3'; 
 import Papa from 'papaparse';
 import { useData } from './DataContext';
 function HistPermisD3() {
-    const [pieChartData, setPieChartData] = useState([0, 0]); // Initialize with [0, 0]
+    const [pieChartData, setPieChartData] = useState([0, 0]); 
     const svgRef = useRef(null);
     const data=useData();
     useEffect(() => {
-     
-            // Extract the data you want to calculate for the pie chart
             const responses = data.map((row) => row['As-tu un permis B ?']);
             const ouiCount = responses.filter((response) => response === 'Oui').length;
             const nonCount = responses.filter((response) => response === 'Non').length;
-  
-            // Update the pie chart data
             setPieChartData([ouiCount, nonCount]);
           
           
@@ -45,7 +41,6 @@ function HistPermisD3() {
         .attr('d', arcGenerator)
         .attr('fill', (d, i) => colors(i));
   
-      // Add labels (optional)
       const labelArc = d3.arc().innerRadius(radius * 0.6).outerRadius(radius * 0.6);
   
       chart

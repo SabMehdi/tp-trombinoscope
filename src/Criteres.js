@@ -7,7 +7,7 @@ function Criteres() {
   const [favoriteBrandsData, setFavoriteBrandsData] = useState({});
   const data=useData();
   useEffect(() => {
-    // Use the data variable to access your global data
+
     if (data) {
       const choices = ['Look et design', 'Performance', 'Prix', 'Endurance', 'Conservation de la valeur', 'Economie de consomation d\'energie'];
 

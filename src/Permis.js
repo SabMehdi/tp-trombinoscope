@@ -9,12 +9,11 @@ function HistPermis() {
   const data=useData();
   useEffect(() => {
    
-          // Extract the data you want to calculate for the pie chart
           const responses = data.map((row) => row['As-tu un permis B ?']);
           const ouiCount = responses.filter((response) => response === 'Oui').length;
           const nonCount = responses.filter((response) => response === 'Non').length;
 
-          // Update the pie chart data
+          
           setPieChartData([ouiCount, nonCount]);    
       }, [data]);
 
@@ -32,7 +31,7 @@ function HistPermis() {
       datasets: [
         {
           data: pieChartData,
-          backgroundColor: ['green', 'red'], // Define colors for each segment
+          backgroundColor: ['green', 'red'],
         },
       ],
     };

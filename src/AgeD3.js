@@ -26,7 +26,7 @@ function AgeD3() {
 
     const x = d3
       .scaleLinear()
-      .domain([0, 100]) // Adjust the domain based on your age data
+      .domain([0, 100]) 
       .range([0, width]);
 
     const bins = d3.histogram().domain(x.domain()).thresholds(x.ticks(10))(histogramData);
