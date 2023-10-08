@@ -108,6 +108,11 @@ function Sidebar() {
               )}
             </li>
           </ul>
+          <ul>
+            <li>
+              <Link to="/nuages">Nuages age/budget</Link>
+            </li>
+          </ul>
         </div>
       )}
     </div>

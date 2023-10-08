@@ -15,6 +15,7 @@ import HistPermisD3 from './PermisD3';
 import FavorisD3 from './favorisD3';
 import { DataProvider } from './DataContext';
 import Sidebar from './Sidebar';
+import ScatterPlot from './NuagesPoints';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/critD3" element={<CriteresD3 />} />
             <Route path="/permisD3" element={<HistPermisD3 />} />
             <Route path="/favorisD3" element={<FavorisD3 />} />
+            <Route path="/nuages" element={< ScatterPlot/>} />
           </Routes>
         </Container>
       </BrowserRouter>
