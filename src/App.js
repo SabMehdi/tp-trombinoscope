@@ -3,7 +3,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
-import Sidebar from './Sidebar';
 import Home from './Home';
 import Statistics from './HistoAge';
 import Histogram from './HistoAge';
@@ -15,29 +14,26 @@ import CriteresD3 from './criteresD3';
 import HistPermisD3 from './PermisD3';
 import FavorisD3 from './favorisD3';
 import { DataProvider } from './DataContext';
+import Sidebar from './Sidebar';
 
 function App() {
 
   return (
     <DataProvider>
       <BrowserRouter>
-        <Sidebar />
-
+        <Sidebar/>
         <Container style={{ marginLeft: '250px' }}>
           <h1 style={{ textAlign: 'center' }}>Trombinoscope</h1>
-
           <Routes>
-            <Route path="/" Component={Home} />
-            <Route path="/permis" Component={HistPermis} />
-            <Route path="/histo" Component={Histogram} />
-            <Route path="/favs" Component={Favorites} />
-            <Route path="/crit" Component={Criteres} />
-            <Route path="/ageD3" Component={AgeD3} />
-            <Route path="/critD3" Component={CriteresD3} />
-            <Route path="/permisD3" Component={HistPermisD3} />
-            <Route path="/favorisD3" Component={FavorisD3} />
-
-
+            <Route path="/" element={<Home />} />
+            <Route path="/permis" element={<HistPermis />} />
+            <Route path="/histo" element={<Histogram />} />
+            <Route path="/favs" element={<Favorites />} />
+            <Route path="/crit" element={<Criteres />} />
+            <Route path="/ageD3" element={<AgeD3 />} />
+            <Route path="/critD3" element={<CriteresD3 />} />
+            <Route path="/permisD3" element={<HistPermisD3 />} />
+            <Route path="/favorisD3" element={<FavorisD3 />} />
           </Routes>
         </Container>
       </BrowserRouter>
