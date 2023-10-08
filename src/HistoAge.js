@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import Papa from 'papaparse';
+import { useData } from './DataContext';
 
 function HistogramAge() {
   const [chart, setChart] = useState(null);
   const [histogramData, setHistogramData] = useState([]);
-
+  const data=useData();
   useEffect(() => {
    
-    Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?output=csv', // Replace with your CSV file URL
-      {
-        download: true,
-        header: true,
-        complete: (result) => {
-         
-          const ages = result.data.map((row) => parseInt(row['Age'], 10)).filter((age) => !isNaN(age));
+          const ages = data.map((row) => parseInt(row['Age'], 10)).filter((age) => !isNaN(age));
           setHistogramData(ages);
-        },
-      }
-    );
-  }, []);
+            
+  }, [data]);
 
   useEffect(() => {
     const canvas = document.getElementById('histogram-chart');

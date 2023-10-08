@@ -1,30 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import Papa from 'papaparse';
+import { useData } from './DataContext';
 
 function HistPermis() {
   const [chart, setChart] = useState(null);
   const [pieChartData, setPieChartData] = useState([0, 0]); // Initialize with [0, 0]
-
+  const data=useData();
   useEffect(() => {
-    // Fetch and parse the CSV data
-    Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?output=csv',
-      {
-        download: true,
-        header: true,
-        complete: (result) => {
+   
           // Extract the data you want to calculate for the pie chart
-          const responses = result.data.map((row) => row['As-tu un permis B ?']);
+          const responses = data.map((row) => row['As-tu un permis B ?']);
           const ouiCount = responses.filter((response) => response === 'Oui').length;
           const nonCount = responses.filter((response) => response === 'Non').length;
 
           // Update the pie chart data
-          setPieChartData([ouiCount, nonCount]);
-        },
-      }
-    );
-  }, []);
+          setPieChartData([ouiCount, nonCount]);    
+      }, [data]);
 
   useEffect(() => {
     const canvas = document.getElementById('pie-chart');

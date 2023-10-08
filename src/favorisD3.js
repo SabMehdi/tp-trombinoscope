@@ -1,18 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3'; // Import D3 library
 import Papa from 'papaparse';
+import { useData } from './DataContext';
 function FavorisD3() {
     const [favoriteBrandsData, setFavoriteBrandsData] = useState({});
     const svgRef = useRef(null);
-  
+    const data=useData();
     useEffect(() => {
-      Papa.parse(
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?gid=610042587&single=true&output=csv',
-        {
-          download: true,
-          header: true,
-          complete: (result) => {
-            const data = result.data.map((row) => row['Quelles sont vos marques de voitures préferées ?']);
+    
+            const dataa = data.map((row) => row['Quelles sont vos marques de voitures préferées ?']);
             const choices = [
               'Mercedes', 'Renault', 'Citroen', 'BMW', 'Porsche', 'Hyundai', 'Opel',
               'Seat', 'Toyota', 'Volkswagen', 'Nissan', 'Tesla', 'Audi',
@@ -23,7 +19,7 @@ function FavorisD3() {
               brandCounts[choice] = 0;
             });
   
-            data.forEach((choices) => {
+            dataa.forEach((choices) => {
               const selectedBrands = choices.split(', ');
               selectedBrands.forEach((brand) => {
                 if (brandCounts.hasOwnProperty(brand)) {
@@ -33,10 +29,9 @@ function FavorisD3() {
             });
   
             setFavoriteBrandsData(brandCounts);
-          },
-        }
-      );
-    }, []);
+          
+    
+        }, [data]);
   let width = 500;
   let height = 300; 
     useEffect(() => {

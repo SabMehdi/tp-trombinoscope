@@ -2,30 +2,24 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3';
 import Papa from 'papaparse';
-
+import { useData } from './DataContext';
 function CriteresD3() {
   const [criteriaData, setCriteriaData] = useState([]);
   const svgRef = useRef(null);
-
+const data=useData();
   useEffect(() => {
-    Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?gid=610042587&single=true&output=csv',
-      {
-        download: true,
-        header: true,
-        complete: (result) => {
-          const data = result.data.map((row) =>
+   
+          const dataaa = data.map((row) =>
             row['Quelles sont les critères les plus importantes dans une voiture pour vous ?']
           );
-          setCriteriaData(data);
-        },
-      }
-    );
+          setCriteriaData(dataaa);
+      
+   
   }, []);
 
   useEffect(() => {
     if (criteriaData.length === 0) return;
-
+    console.log(criteriaData)
     const svg = d3.select(svgRef.current);
     const margin = { top: 20, right: 30, bottom: 40, left: 40 };
     const width = 500 - margin.left - margin.right;

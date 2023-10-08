@@ -1,26 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3';
 import Papa from 'papaparse';
-
+import { useData } from './DataContext';
 function AgeD3() {
   const [histogramData, setHistogramData] = useState([]);
   const svgRef = useRef(null);
-
+  const data=useData();
   useEffect(() => {
-    Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?output=csv',
-      {
-        download: true,
-        header: true,
-        complete: (result) => {
-          const ages = result.data
+    
+          const ages = data
             .map((row) => parseInt(row['Age'], 10))
             .filter((age) => !isNaN(age));
           setHistogramData(ages);
-        },
-      }
-    );
-  }, []);
+
+       
+  }, [data]);
 
   useEffect(() => {
     if (histogramData.length === 0) return;

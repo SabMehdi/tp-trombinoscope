@@ -14,29 +14,34 @@ import AgeD3 from './AgeD3';
 import CriteresD3 from './criteresD3';
 import HistPermisD3 from './PermisD3';
 import FavorisD3 from './favorisD3';
+import { DataProvider } from './DataContext';
+
 function App() {
+
   return (
-    <BrowserRouter>
-      <Sidebar />
+    <DataProvider>
+      <BrowserRouter>
+        <Sidebar />
 
-      <Container style={{ marginLeft: '250px' }}>
-        <h1 style={{ textAlign: 'center' }}>Trombinoscope</h1>
+        <Container style={{ marginLeft: '250px' }}>
+          <h1 style={{ textAlign: 'center' }}>Trombinoscope</h1>
 
-        <Routes>
-          <Route path="/" Component={Home} />
-          <Route path="/permis" Component={HistPermis} />
-          <Route path="/histo" Component={Histogram} />
-          <Route path="/favs" Component={Favorites} />
-          <Route path="/crit" Component={Criteres} />
-          <Route path="/ageD3" Component={AgeD3} />
-          <Route path="/critD3" Component={CriteresD3} />
-          <Route path="/permisD3" Component={HistPermisD3} />
-          <Route path="/favorisD3" Component={FavorisD3} />
-          
-        
-        </Routes>
-      </Container>
-    </BrowserRouter>
+          <Routes>
+            <Route path="/" Component={Home} />
+            <Route path="/permis" Component={HistPermis} />
+            <Route path="/histo" Component={Histogram} />
+            <Route path="/favs" Component={Favorites} />
+            <Route path="/crit" Component={Criteres} />
+            <Route path="/ageD3" Component={AgeD3} />
+            <Route path="/critD3" Component={CriteresD3} />
+            <Route path="/permisD3" Component={HistPermisD3} />
+            <Route path="/favorisD3" Component={FavorisD3} />
+
+
+          </Routes>
+        </Container>
+      </BrowserRouter>
+    </DataProvider>
   );
 }
 

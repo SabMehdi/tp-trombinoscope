@@ -7,7 +7,7 @@ import './App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 import './App.css'
-
+import { useData } from './DataContext';
 // url convenable pour chaque marque
 const marques = [
     { nom: 'Toyota', image: 'https://logowik.com/content/uploads/images/toyota5075.logowik.com.webp' },
@@ -25,11 +25,17 @@ const marques = [
     { nom: 'Opel', image: 'https://logowik.com/content/uploads/images/opel-new-20231625.logowik.com.webp' },
   ];
 
-function Home() { 
-    const [data, setData] = useState([]);
-    const [personnes, setPersonnes] = useState([]);
+  function Home() {
+    const data = useData(); // Access the shared data
+  
     const [showDetails, setShowDetails] = useState([]);
-
+    const headers = useMemo(() => {
+      if (data.length > 0) {
+        return Object.keys(data[0]);
+      }
+      return [];
+    }, [data]);
+  
     const toggleDetails = (index) => {
       setShowDetails((prevState) => {
         const updatedShowDetails = [...prevState];
@@ -37,47 +43,6 @@ function Home() {
         return updatedShowDetails;
       });
     };
-    const headers = useMemo(() => {
-      if (data.length > 0) {
-        return Object.keys(data[0]);
-      }
-      return [];
-    }, [data]);
-    useEffect(() => {
-      Papa.parse(
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?gid=610042587&single=true&output=csv',
-        {
-          download: true,
-          header: true,
-          complete: (result) => {
-            setData(result.data);
-            // Enregistrez les informations des personnes 
-  
-            const personnesData = result.data.map((personData) => {
-              const voitures = marques.filter((marque) =>
-                personData['Quelles sont vos marques de voitures préferées ?'].includes(marque.nom)
-              );
-              return {
-                nom: personData.Nom,
-                prenom: personData.Prénom,
-                email: personData.Email,
-                voitures: voitures,
-                tel: personData['Numéro de téléphone'],
-                age: personData.Age,
-                acheterVoiture: personData['Voullez vous achetez une voiture ?'],
-                voitureOccasion: personData['Veux-tu acheter une voiture d\'occasion ?'],
-                budget: personData['C\'est quoi votre budget en euros?'],
-                permis: personData['As-tu un permis B ?'],
-                voitureElectrique: personData['Préfère tu proquerire une voiture éléctrique ?'],
-                criteres: personData['Quelles sont les critères les plus importantes dans une voiture pour vous ?'],
-                inscription: personData.Timestamp
-              };
-            });
-            setPersonnes(personnesData);
-          },
-        }
-      );
-    }, []);
   
     const sliderSettings = {
       dots: true,
@@ -87,54 +52,74 @@ function Home() {
       slidesToScroll: 1,
     };
   
+    if (!data || data.length === 0) {
+      return <div>Loading...</div>; // You can customize this loading state
+    }
+    const matchCarWithMarque = (carName) => {
+      return marques.find((marque) => carName.toLowerCase().includes(marque.nom.toLowerCase()));
+    };
+  
     return (
-        <div className='grids'>
-          {personnes.map((personne, index) => (
-            <div className='test' key={index}>
-              <div className='slider-col'>
-                <h2 style={{ textAlign: 'center' }}>
-                  {personne.nom.toUpperCase()} {personne.prenom}
-                </h2>
-                {/* Affichez les voitures préférées en un slider */}
-                <Slider {...sliderSettings}>
-                  {personne.voitures.map((voiture, voitureIndex) => (
-                    <div key={voitureIndex}>
+      <div className='grids'>
+        {data.map((personData, index) => (
+          <div className='test' key={index}>
+            <div className='slider-col'>
+              <h2 style={{ textAlign: 'center' }}>
+                {personData.Nom.toUpperCase()} {personData.Prénom.toLowerCase()} 
+              </h2>
+              {/* Check if voitures is defined before mapping over it */}
+           
+              <Slider {...sliderSettings}>
+              {personData['Quelles sont vos marques de voitures préferées ?']
+                .split(', ')
+                .map((carName, carIndex) => {
+                  const matchedMarque = matchCarWithMarque(carName);
+                  return (
+                    <div key={carIndex}>
                       <img
-                        src={voiture.image}
-                        alt={voiture.nom}
-                        style={{ maxWidth: '100px', maxHeight: '100px', height: '50px', display: 'block', margin: '0 auto' }}
+                        src={matchedMarque ? matchedMarque.image : ''}
+                        alt={carName}
+                        style={{
+                          maxWidth: '100px',
+                          maxHeight: '100px',
+                          height: '50px',
+                          display: 'block',
+                          margin: '0 auto',
+                        }}
                       />
                     </div>
-                  ))}
-                </Slider>
-              </div>
-    
-              <div className='email-row'>{personne.email}</div>
-    
-              <button onClick={() => toggleDetails(index)}>
-                {showDetails[index] ? 'Masquer les détails' : 'Afficher les détails'}
-              </button>
-    
-              {showDetails[index] && (
-                <div className='additional-details'>
-                  <h3>Additional Details</h3>
-                  <p>Date D'inscription: {personne.inscription}</p>
-                  <p>Telephone: {personne.tel}</p>
-                  <p>Age: {personne.age}</p>
-                  <p>
-                    <FontAwesomeIcon icon={faIdCard} /> Permis B: {personne.permis}
-                  </p>
-                  <p>Voullez vous achetez une voiture ?: {personne.voitureElectrique}</p>
-                  <p>Préfère tu proquerire une voiture éléctrique ?: {personne.voitureElectrique}</p>
-                  <p>Quelles sont les critères les plus importantes dans une voiture pour vous ?: {personne.criteres}</p>
-                  <p>Veux-tu acheter une voiture d'occasion ?: {personne.voitureOccasion}</p>
-                  <p>C'est quoi votre budget en euros?: {personne.budget}</p>
-                </div>
-              )}
+                  );
+                })}
+            </Slider>
             </div>
-          ))}
-        </div>
-      );
-}
-
-export default Home; // Updated component export name
+  
+            <div className='email-row'>{personData.Email}</div>
+  
+            <button onClick={() => toggleDetails(index)}>
+              {showDetails[index] ? 'Masquer les détails' : 'Afficher les détails'}
+            </button>
+  
+            {showDetails[index] && (
+              <div className='additional-details'>
+                <h3>Additional Details</h3>
+                <p>Date D'inscription: {personData.Timestamp}</p>
+                <p>Telephone: {personData['Numéro de téléphone']}</p>
+                <p>Age: {personData.Age}</p>
+                <p>
+                  <FontAwesomeIcon icon={faIdCard} /> Permis B: {personData['As-tu un permis B ?']}
+                </p>
+                <p>Voulez-vous acheter une voiture ?: {personData['Préfère tu proquerire une voiture éléctrique ?']}</p>
+                <p>Préfère tu proquerire une voiture éléctrique ?: {personData['Préfère tu proquerire une voiture éléctrique ?']}</p>
+                <p>Quelles sont les critères les plus importantes dans une voiture pour vous ?: {personData['Quelles sont les critères les plus importantes dans une voiture pour vous ?']}</p>
+                <p>Veux-tu acheter une voiture d'occasion ?: {personData['Veux-tu acheter une voiture d\'occasion ?']}</p>
+                <p>C'est quoi votre budget en euros?: {personData['C\'est quoi votre budget en euros?']}</p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  
+  export default Home;
+  

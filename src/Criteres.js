@@ -1,43 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import Papa from 'papaparse';
-
+import { useData } from './DataContext';
 function Criteres() {
   const [chart, setChart] = useState(null);
   const [favoriteBrandsData, setFavoriteBrandsData] = useState({});
-
+  const data=useData();
   useEffect(() => {
-   
-    Papa.parse(
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vS65hgo4JlFyIrIzQdpPaLiaUMZw9VfC7aHbWlbQXw7WIfeBRD6jEJkf6LfADiXjZcXdGNP7c6XgCTB/pub?gid=610042587&single=true&output=csv',
-      {
-        download: true,
-        header: true,
-        complete: (result) => {
-       
-          const data = result.data.map((row) => row['Quelles sont les critères les plus importantes dans une voiture pour vous ?']);
-          const choices = ['Look et design','Performance','Prix','Endurance','Conservation de la valeur','Economie de consomation d\'energie'];
+    // Use the data variable to access your global data
+    if (data) {
+      const choices = ['Look et design', 'Performance', 'Prix', 'Endurance', 'Conservation de la valeur', 'Economie de consomation d\'energie'];
 
+      const brandCounts = {};
+      choices.forEach((choice) => {
+        brandCounts[choice] = 0;
+      });
       
-          const brandCounts = {};
-          choices.forEach((choice) => {
-            brandCounts[choice] = 0;
+      data.forEach((row) => {
+        const choices = row['Quelles sont les critères les plus importantes dans une voiture pour vous ?'];
+        if (choices) {
+          const selectedBrands = choices.split(', ');
+          selectedBrands.forEach((brand) => {
+           
+            if (brandCounts.hasOwnProperty(brand)) {
+              brandCounts[brand] += 1;
+            }
           });
-
-          data.forEach((choices) => {
-            const selectedBrands = choices.split(', '); 
-            selectedBrands.forEach((brand) => {
-              if (brandCounts.hasOwnProperty(brand)) {
-                brandCounts[brand] += 1;
-              }
-            });
-          });
-
-          setFavoriteBrandsData(brandCounts);
-        },
-      }
-    );
-  }, []);
+        }
+      });
+      setFavoriteBrandsData(brandCounts);
+      console.log(data);
+    }
+    
+  }, [data]);
 
   useEffect(() => {
     const canvas = document.getElementById('criteres');
