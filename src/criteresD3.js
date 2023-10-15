@@ -36,7 +36,6 @@ function CriteresD3() {
     })
 
     setCriteriaData(criteriaCounts)
-    console.log(criteriaCounts)
   }, [data]);
 
   let width = 500;
