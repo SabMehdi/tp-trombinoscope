@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
-import Papa from 'papaparse';
 import { useData } from './DataContext';
 function Criteres() {
   const [chart, setChart] = useState(null);
@@ -29,7 +28,7 @@ function Criteres() {
         }
       });
       setFavoriteBrandsData(brandCounts);
-      console.log(data);
+      //console.log(data);
     }
     
   }, [data]);

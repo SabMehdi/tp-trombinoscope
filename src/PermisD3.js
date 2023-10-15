@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3'; 
-import Papa from 'papaparse';
 import { useData } from './DataContext';
 function HistPermisD3() {
     const [pieChartData, setPieChartData] = useState([0, 0]); 

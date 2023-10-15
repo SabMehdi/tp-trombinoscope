@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
-import Papa from 'papaparse';
 import { useData } from './DataContext';
 
 function Favorites() {

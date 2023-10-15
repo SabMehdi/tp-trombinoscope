@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
 import Home from './Home';
-import Statistics from './HistoAge';
 import Histogram from './HistoAge';
 import HistPermis from './Permis';
 import Favorites from './favorites';
