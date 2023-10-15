@@ -1,15 +1,46 @@
 /* Sidebar.css */
+
+/* Original Sidebar Styles */
 .sidebar {
+  width: 250px;
   background-color: #333;
   color: white;
-  width: 250px;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  overflow-y: auto; /* Enable scrolling if needed */
+  overflow-y: auto;
 }
 
+/* Updated Sidebar Styles */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.sidebar.open {
+  width: 0;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  z-index: 2;
+  color: white;
+  font-size: 24px;
+}
+
+/* Sidebar Menu Styles */
 .sidebar ul {
   list-style-type: none;
   padding: 0;
@@ -18,15 +49,17 @@
 .sidebar li {
   padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s; /* Add a smooth transition for the hover effect */
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
 }
 
 /* Add a hover effect */
 .sidebar li:hover {
-  background-color: #555; /* Change the background color on hover */
+  background-color: #555;
 }
 
-/* Apply the same style to buttons */
+/* Style the buttons on hover */
 .sidebar li > button {
   background: none;
   border: none;
@@ -37,12 +70,23 @@
   transition: background-color 0.3s;
 }
 
-/* Style the buttons on hover */
-.sidebar li > button:hover {
-  background-color: #555;
-  color: white;
+/* Style for the dropdown arrow icons */
+.dropdown-icon {
+  margin-left: auto;
+  font-size: 20px;
 }
-.sidebar li > * {
 
+/* Sidebar Sub-menu Styles */
+.sub-menu {
+  display: none;
+  padding-left: 20px;
+}
+
+.sidebar.with-dropdown .sub-menu {
+  display: block;
+}
+
+/* Ensure links are visible */
+.sidebar li > * {
   color: white;
 }

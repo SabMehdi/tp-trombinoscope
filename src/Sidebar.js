@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
+// Sidebar.js
+
+// ... (your existing imports and code)
 
 function Sidebar() {
   const [showDropdown1, setShowDropdown1] = useState(false);
@@ -27,10 +30,19 @@ function Sidebar() {
 
   const toggleDropdown5 = () => {
     setShowDropdown5(!showDropdown5);
-
   };
 
-
+  // Function to handle the behavior of the Statistics submenu
+  const toggleStatistics = () => {
+    if (showDropdown1) {
+      // Close the Statistics submenu
+      setShowDropdown2(false);
+      setShowDropdown3(false);
+      setShowDropdown4(false);
+      setShowDropdown5(false);
+    }
+    toggleDropdown1(); // Toggle the Statistics submenu
+  };
 
   return (
     <div className="sidebar">
@@ -38,7 +50,7 @@ function Sidebar() {
         <li>
           <Link to="/">Acceuil</Link>
         </li>
-        <li onClick={toggleDropdown1}>
+        <li onClick={toggleStatistics}> {/* Updated: Handle Statistics submenu */}
           Statistics
           {showDropdown1 ? (
             <span className="dropdown-icon">&#9650;</span>
@@ -49,7 +61,7 @@ function Sidebar() {
       </ul>
 
       {showDropdown1 && (
-        <div className="dropdown">
+        <div className="dropdown with-dropdown">
           <ul>
             <li>
               <button onClick={toggleDropdown2}>Age</button>
@@ -124,4 +136,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar; 
+export default Sidebar;
