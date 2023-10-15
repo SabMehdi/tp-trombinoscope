@@ -36,10 +36,11 @@ function ScatterPlot() {
         data: {
           datasets: [
             {
-              label: 'Age vs. Budget',
+              label: 'Age et Budget',
               data: data.map((item) => ({
-                x: parseInt(item.Age, 10),//base décimal
+                x: parseInt(item.Age, 10),
                 y: formatBudget(item["C'est quoi votre budget en euros?"]),
+                
               })),
               backgroundColor: 'rgba(75, 192, 192, 0.5)',
               pointRadius: 6,
