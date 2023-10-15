@@ -28,7 +28,6 @@ function Criteres() {
         }
       });
       setFavoriteBrandsData(brandCounts);
-      //console.log(data);
     }
     
   }, [data]);
