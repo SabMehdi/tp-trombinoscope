@@ -27,8 +27,9 @@ function Sidebar() {
 
   const toggleDropdown5 = () => {
     setShowDropdown5(!showDropdown5);
-    
+
   };
+
 
 
   return (
@@ -105,6 +106,9 @@ function Sidebar() {
                   <li>
                     <Link to="/critD3">criteres D3</Link>
                   </li>
+                  <li>
+                    <Link to="/mixed">age/criteres</Link>
+                  </li>
                 </ul>
               )}
             </li>
@@ -121,71 +125,3 @@ function Sidebar() {
 }
 
 export default Sidebar; 
- 
-
-/*  import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-
-function Sidebar() {
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
-  const handleDropdownClick = (index) => {
-    setActiveDropdown(index === activeDropdown ? null : index);
-  };
-
-  const renderDropdown = (index, title, links) => {
-    const isActive = index === activeDropdown;
-
-    return (
-      <Card key={index}>
-        <Accordion.Toggle
-          as={Card.Header}
-          eventKey={index.toString()}
-          onClick={() => handleDropdownClick(index)}
-          className={`d-flex justify-content-between align-items-center ${
-            isActive ? 'active' : ''
-          }`}
-        >
-          {title}
-          <i className={`fas ${isActive ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={index.toString()}>
-          <Card.Body>
-            <ul className="list-unstyled">
-              {links.map((link, linkIndex) => (
-                <li key={linkIndex}>
-                  <Link to={link.to}>{link.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    );
-  };
-
-  const dropdownData = [
-    {
-      title: 'Statistics',
-      links: [
-        { label: 'Age', to: '/histo' },
-        { label: 'Permis', to: '/permis' },
-        { label: 'Favoris', to: '/favs' },
-        { label: 'Criteres', to: '/crit' },
-      ],
-    },
-  ];
-
-  return (
-    <div className="sidebar">
-      <Accordion defaultActiveKey="0">
-        {dropdownData.map((dropdown, index) => renderDropdown(index, dropdown.title, dropdown.links))}
-      </Accordion>
-    </div>
-  );
-}
-
-export default Sidebar;  */
