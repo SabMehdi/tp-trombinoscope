@@ -1,6 +1,3 @@
-/* Sidebar.css */
-
-/* Original Sidebar Styles */
 .sidebar {
   width: 250px;
   background-color: #333;
@@ -12,7 +9,6 @@
   overflow-y: auto;
 }
 
-/* Updated Sidebar Styles */
 .sidebar {
   width: 250px;
   height: 100%;
@@ -29,7 +25,6 @@
   width: 0;
 }
 
-/* Toggle Button */
 .sidebar-toggle {
   cursor: pointer;
   position: absolute;
@@ -40,7 +35,6 @@
   font-size: 24px;
 }
 
-/* Sidebar Menu Styles */
 .sidebar ul {
   list-style-type: none;
   padding: 0;
@@ -54,12 +48,10 @@
   align-items: center;
 }
 
-/* Add a hover effect */
 .sidebar li:hover {
   background-color: #555;
 }
 
-/* Style the buttons on hover */
 .sidebar li > button {
   background: none;
   border: none;
@@ -70,13 +62,11 @@
   transition: background-color 0.3s;
 }
 
-/* Style for the dropdown arrow icons */
 .dropdown-icon {
   margin-left: auto;
   font-size: 20px;
 }
 
-/* Sidebar Sub-menu Styles */
 .sub-menu {
   display: none;
   padding-left: 20px;
@@ -86,7 +76,6 @@
   display: block;
 }
 
-/* Ensure links are visible */
 .sidebar li > * {
   color: white;
 }

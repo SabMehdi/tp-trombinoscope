@@ -43,9 +43,9 @@
 }
 .custom-image-size {
   max-width: 10px;
-  /* Adjust as needed */
+ 
   max-height: 10px;
-  /* Adjust as needed */
+  
 }
 
 .grids {
@@ -56,26 +56,19 @@
 }
 
 .email-row {
-  /* Center the text horizontally */
+  
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Center the text vertically */
   border: 1px solid rgb(14, 14, 14);
-  /* Add a black border */
   padding: 10px;
   background-color: rgba(0, 0, 0, .03);
   color: #868e96;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   overflow: hidden;
-  /* Masque le texte qui dépasse */
   white-space: nowrap;
-  /* Empêche le texte de passer à la ligne */
   text-overflow: ellipsis;
-  /* Ajoute des points de suspension (...) en fin de texte si nécessaire */
-
-
 }
 
 .slider-col {
@@ -121,7 +114,6 @@
   margin-bottom: 10px;
 }
 
-/* In your CSS file */
 .bm-menu-wrap {
   position: fixed;
   top: 0;

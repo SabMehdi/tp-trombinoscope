@@ -4,7 +4,7 @@ import { useData } from './DataContext';
 
 function HistPermis() {
   const [chart, setChart] = useState(null);
-  const [pieChartData, setPieChartData] = useState([0, 0]); // Initialize with [0, 0]
+  const [pieChartData, setPieChartData] = useState([0, 0]); 
   const data=useData();
   useEffect(() => {
    
