@@ -43,7 +43,7 @@ function FavorisD3() {
 
     const x = d3.scaleBand()
       .domain(Object.keys(favoriteBrandsData))
-      .range([margin.left, width - margin.right])
+      .range([margin.left, width+50])
       .padding(0.1);
 
     const y = d3.scaleLinear()
@@ -82,7 +82,7 @@ function FavorisD3() {
   return (
     <div>
       <h1>Favorite Car Brands</h1>
-      <svg ref={svgRef} width={width} height={height}></svg>
+      <svg ref={svgRef} width={width+70} height={height}></svg>
     </div>
   );
 }
